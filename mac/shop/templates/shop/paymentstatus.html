@@ -1,0 +1,43 @@
+{% extends 'shop/basic.html' %}
+{% block title%} My Awesome Cart Tracker{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="col my-4">
+
+        <h2>Payment status regarding your order Id {{response.ORDERID}}</h2>
+        {% if response.RESPCODE == '01' %}
+        ORDER SUCCESS
+        {% else %}
+        ORDER FAILURE
+        {% endif%}
+
+    </div>
+    <table class="table" >
+  <thead class="thead-light">
+    <tr>
+        <th scope="col " colspan="2"><span style="padding-left:450px;">Payment Details</span></th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for key,value in response.items%}
+  {%if key != 'MID' and key != 'RESPMSG' and key != 'RESPCODE' and key != 'GATEWAYNAME'%}
+    <tr>
+        <td><span style="padding-left:300px;">{{key}}</span></td>
+      <td>{{value}}</td>
+    </tr>
+  {%endif%}
+   {%endfor%}
+
+  </tbody>
+</table>
+
+
+
+<button type="button" class="btn btn-primary " style="margin-left:450px;margin-top:20px;" id="cmd">Download PDF</button>
+
+</div>
+<script>
+  localStorage.removeItem('cart');
+</script>
+{% endblock %}
