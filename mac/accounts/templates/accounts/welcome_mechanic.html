@@ -7,7 +7,7 @@
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script>
-    $(document).ready(function(){
+     $(document).ready(function(){
       $(".hamburger .hamburger__inner").click(function(){
         $(".main_container").toggleClass("active")
          $(".hamburger").toggleClass("active")
@@ -17,7 +17,9 @@
          $(".profile_dd").toggleClass("active");
       });
     })
+   
   </script>
+
   <style>
   @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
@@ -40,7 +42,7 @@
 .hamburger .hamburger__inner{
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 20%;
   transform: translate(-50%,-50%);
   cursor: pointer;
   width: 40px;
@@ -57,8 +59,8 @@
 }
 
  .hamburger div.two{
-  top: 10px;
-  width: 40px;
+  top: 820px;
+  
 }
 
  .hamburger div.three{
@@ -131,7 +133,7 @@
 
 .main_container .sidebar{
   position: fixed;
-  top: 60px;
+  top: 71px;
   left: 0;
   width: 225px;
   height: 100%;
@@ -197,8 +199,8 @@
 
 .main_container .sidebar ul li a:hover,
 .main_container .sidebar ul li a.active{
-  background-color:black;
-  color: white;
+  background-color:white;
+  color:black;
 }
 
 .main_container .container .item{
@@ -213,7 +215,7 @@
 /* after adding active class */
 .active .sidebar{
   width: 80px;
- background-color:black;
+ background-color: #004D40;
  color:black;
 }
 
@@ -247,23 +249,43 @@ text-decoration:none;
 {
 margin-left:600px;
 }
-@media screen and (max-width: 900px)
+
+ @media screen and (max-width: 600px) {
+   .display-3{
+        font-size:24px;
+    }
+    .main_container .sidebar
+    {
+  background: #004D40;
+  position: fixed;
+  top: 54px;
+  left: 0;
+  width: 225px;
+  height: 100%;
+  transition: all 0.3s ease;
+    }
+    .active .sidebar{
+  width: 0px;
+ background-color: #004D40;
+ color:black;
+}
+.active .sidebar ul li a span.title,
+.active .profile_info
 {
-  ul{
-  list-style-type:none;
+  display: none;
+}
+
+.active .main_container .container{
+  width: calc(100% - 80px);
+  margin-left: 80px;
 
 }
-  #demo
-  {
-    color:white;
-    float: left;
-    padding-left: 5px;
-  }
-  .dammy
-  {
-    margin-left: 200px;
-  }
+.active  .sidebar ul li a .icon
+{
+  display:none;
 }
+}
+
   </style>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -307,7 +329,7 @@ margin-left:600px;
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
        
-         <div class="right_menu mx-3 " >
+         <div class="right_menu mx-3" >
 
         <ul>
           <li><i class="fas fa-user mt-3" ></i>
@@ -325,7 +347,7 @@ margin-left:600px;
    
      
   <div class="main_container ">
-      <div class="sidebar "style="background:none;">
+      <div id="side" class="sidebar >
           <div class="sidebar__inner">
             <div class="profile">
               <div class="img">
@@ -338,7 +360,7 @@ margin-left:600px;
             </div>
             <ul>
               <li>
-                <a href="#" class="active" style="background-color:black;text-decoration: none;">
+                <a href="#" class="active" style="text-decoration: none;">
                   <span class="icon"><i class="fas fa-dice-d6"></i></span>
                   <span class="title">Dashboard</span>
                 </a>
@@ -370,39 +392,44 @@ margin-left:600px;
             </ul>
           </div>
       </div>
-      <div class="container">
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-        <div class="item">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
-        </div>
-      </div>
+      <div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Puncture.Com</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
   </div>
 </div>
-<script>
-// Check browser support
-if (localStorage.getItem('known_mechanic')==null||localStorage.getItem('known_mechanic')=="uid") {
-  // Store
-  localStorage.setItem("known_mechanic", "mid");
-  // Retrieve
-  
-} 
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Heading</h2>
+      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Heading</h2>
+      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Heading</h2>
+      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+    </div>
+  </div>
+
+  <hr>
+
+
+
+</div>
+  </div>
+</div>
+<script type="text/javascript">
+  localStorage.setItem('known_mechanic','uid');
 </script>
 </body>
 </html>
+
+

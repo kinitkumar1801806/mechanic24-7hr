@@ -5,7 +5,7 @@
 <script>
 if(localStorage.getItem('known_mechanic')=="mid")
   window.location="/accounts/welcome_mechanic/";
-else 
+else if(localStorage.getItem('known_mechanic')=="uid")
   window.location="/accounts/welcome_user/";
     </script>
 {%endif%}
