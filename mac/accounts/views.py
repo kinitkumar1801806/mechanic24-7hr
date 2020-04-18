@@ -214,6 +214,8 @@ def wuser(request):
             dob=lu.dob
             bio=lu.bio
             params={'add':add,'phone':phone,'image':image}
+        
+                
     return render(request,'accounts/welcome_user.html',params)
 
 def wmechanic(request):

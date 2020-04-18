@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Products, Contact, Orders, OrderUpdate
+from .models import Products, Contact, Orders, OrderUpdate,Payment_history
 from math import ceil
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -100,6 +100,13 @@ def checkout(request):
         state = request.POST.get('state', '')
         zip_code = request.POST.get('zip_code', '')
         phone = request.POST.get('phone', '')
+        if len(zip_code)<6:
+             messages.error(request,"Please enter correct zip code")
+             return redirect('Checkout')
+        if len(phone)<10:
+             messages.error(request,"Please enter correct phone number")
+             return redirect('Checkout')     
+
         order = Orders(orders_json=items_json, name=name, email=email, address=address, city=city,
                        state=state, zip_code=zip_code, phone=phone, amount=amount)
         order.save()
@@ -140,7 +147,18 @@ def handlerequest(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
+            histroy=Payment_history(mail=request.user.email,payment_json=response_dict)
+            histroy.save()
             print('order successful')
         else:
-            print('order was not successful because' + response_dict['RESPMSG'])
+            messages.error(request,'order was not successful because' + response_dict['RESPMSG'])
+            return redirect('Checkout')
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
+
+
+def user_history(request):
+    allpayments=[]
+    history = Payment_history.objects.filter(mail=request.user.email)
+    for hr in history:
+         allpayments.append({'payment_json':hr.payment_json})     
+    return render(request, 'shop/user_payment_history.html',{'allpayments':allpayments})

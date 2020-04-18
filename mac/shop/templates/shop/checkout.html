@@ -9,6 +9,17 @@ margin-right:20px;
 {% endblock %}
 {% block body %}
 <div class="container">
+    <!--Alert Message-->
+      {% if messages %}
+      {%for message in messages%}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message!</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {%endfor%}
+      {%endif%}
     <div class="col my-4">
         <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
         <div class="my-4">
@@ -31,38 +42,38 @@ margin-right:20px;
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="address1">Address</label>
-                <input type="text" class="form-control" id="address1" name="address1" placeholder="1234 Main St">
+                <input type="text" class="form-control" id="address1" name="address1" placeholder="1234 Main St" required>
             </div>
             <div class="form-group">
                 <label for="address2">Address line 2</label>
-                <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
+                <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" name="city">
+                    <input type="text" class="form-control" id="city" name="city" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" name="state"  placeholder="Enter State">
+                    <input type="text" class="form-control" id="state" name="state"  placeholder="Enter State" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="zip_code">Zip</label>
-                    <input type="text" class="form-control" id="zip_code" name="zip_code">
+                    <input type="text" class="form-control" id="zip_code" name="zip_code" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" name="phone">
+                <input type="tel" class="form-control" id="phone" name="phone" required>
             </div>
             <button type="submit" class="btn btn-primary">Place Order</button>
         </form>

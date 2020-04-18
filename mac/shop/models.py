@@ -46,3 +46,9 @@ class OrderUpdate(models.Model):
 
     def __str__(self):
         return self.update_desc[0:7] + "..."
+
+class  Payment_history(models.Model):
+     payment_id=models.AutoField(primary_key=True)
+     mail=models.CharField(max_length=200,default="")
+     payment_json=models.CharField(max_length=1000,default="")    
+     timestamp=models.DateField(auto_now_add=True)      

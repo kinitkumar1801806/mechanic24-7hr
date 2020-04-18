@@ -1,7 +1,7 @@
 {% extends 'accounts/basic.html' %}
 {% block title%}Puncture.Com{% endblock%}
 {%block head%}
-{%if user.is_authenticated%}
+{%if request.user.is_authenticated%}
 <script>
 if(localStorage.getItem('known_mechanic')=="mid")
   window.location="/accounts/welcome_mechanic/";

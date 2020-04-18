@@ -50,7 +50,7 @@ $('#trackerForm').submit(function(event) {
         })
         .done(function(data) {
             $('#citems').empty();
-            console.log(data)
+          
             data = JSON.parse(data);
             if (data['status'] == 'success') {
                 updates = data['updates'];
@@ -65,7 +65,7 @@ $('#trackerForm').submit(function(event) {
                 }
                 // Fill in the order details
                 cart = JSON.parse(data['itemsJson']);
-                console.log(cart);
+              
                 for (item in cart) {
                     let name = cart[item][1];
                     let qty = cart[item][0];
