@@ -5,22 +5,24 @@
      <div class="row mb-2">
      {% for item in myposts%}
 
-    <div class="col-md-6">
+    <div class="col-md-12 my-2">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">{{item.head0}}</strong>
           <h3 class="mb-0">{{item.title}}</h3>
           <div class="mb-1 text-muted">{{item.pub_date}}</div>
-          <p class="card-text mb-auto">{{item.head1}}</p>
+          <strong class="d-inline-block mb-2 text-secondary">{{item.head0}}</strong>
+          <h6 class="card-text mb-auto text-break">{{item.chead0|slice:"0:200"}}...</h6>
+          <strong class="d-inline-block mb-2 text-secondary">{{item.head1}}</strong>
+          <h6 class="card-text mb-auto text-break">{{item.chead1|slice:"0:250"}}....</h6>
           <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
+          <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="350" height="350" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
 
         </div>
       </div>
     </div>
-       {% if forloop.counter|divisibleby:2 %}
+       {% if forloop.counter|divisibleby:1 %}
      </div><div class="row mb-2">
      {% endif %}
 

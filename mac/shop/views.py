@@ -157,8 +157,6 @@ def handlerequest(request):
 
 
 def user_history(request):
-    allpayments=[]
     history = Payment_history.objects.filter(mail=request.user.email)
     for hr in history:
-         allpayments.append({'payment_json':hr.payment_json})     
-    return render(request, 'shop/user_payment_history.html',{'allpayments':allpayments})
+         return render(request, 'shop/user_payment_history.html',{'allpayments':hr.payment_json})
