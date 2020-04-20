@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1.0">
   <title>Welcome {{user.username}}</title>
 
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -250,7 +250,9 @@ text-decoration:none;
 margin-left:600px;
 }
 
- @media screen and (max-width: 600px) {
+
+
+ @media only screen and (max-width: 800px) {
    .display-3{
         font-size:24px;
     }
@@ -284,6 +286,35 @@ margin-left:600px;
 {
   display:none;
 }
+.main_container .sidebar .profile img{
+   display:none;
+}
+.active .sidebar ul li a.active{
+  background-color:transparent;
+  color:black;
+}
+.right_menu ul li .profile_dd{
+  position: absolute;
+  top: 55px;
+  left: -10px;
+  background: black;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  padding: 10px 0;
+  width: 180px;
+  border-radius: 3px;
+  display: none;
+  user-select: none;
+}
+.right_menu ul li .profile_dd:before{
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  right: 150px;
+  border: 10px solid;
+  border-color: transparent transparent #fff transparent;
+}
+
 }
 
   </style>

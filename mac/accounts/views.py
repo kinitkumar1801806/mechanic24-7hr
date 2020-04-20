@@ -164,7 +164,7 @@ def everify(request):
         user_signup=User_Accounts(myuser=user,address=address,phone=phone,image="/media/shop/images/cylinder1.jpg")
         user_signup.save()
         messages.success(request,"You are successully signed up")
-    return HttpResponse('done')
+    return render(request,"accounts/home.html")
 def verify(request):
     global mid
     if request.method=="POST":
@@ -194,7 +194,7 @@ def verify(request):
         mechanic_signup=Mechanic_Accounts(mymechanic=mechanic,address=address,aadhar=aadhar,mechanic_id=mid,phone=phone,image="/media/shop/images/cylinder1.jpg")
         mechanic_signup.save()
         messages.success(request,"You are successully signed up as a mechanic")
-    return HttpResponse('done')
+    return render(request,"accounts/home.html")
 
 def id_generator(size=8, chars=string.digits+string.ascii_uppercase + string.digits):
        return ''.join(random.choice(chars) for _ in range(size))

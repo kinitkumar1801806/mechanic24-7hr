@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1.0">
   <title>Welcome {{user.username}}</title>
 
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -134,7 +134,7 @@
 
 .main_container .sidebar{
   position: fixed;
-  top: 73px;
+  top: 57px;
   left: 0;
   width: 225px;
   height: 100%;
@@ -251,7 +251,8 @@ text-decoration:none;
 margin-left:600px;
 }
 
- @media screen and (max-width: 767px) {
+
+ @media only screen and (max-width: 767px) {
    .display-3{
         font-size:24px;
     }
@@ -285,7 +286,37 @@ margin-left:600px;
 {
   display:none;
 }
+.main_container .sidebar .profile img{
+   display:none;
 }
+.active .sidebar ul li a.active{
+  background-color:transparent;
+  color:black;
+}
+.right_menu ul li .profile_dd{
+  position: absolute;
+  top: 55px;
+  left: -10px;
+  background: black;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  padding: 10px 0;
+  width: 180px;
+  border-radius: 3px;
+  display: none;
+  user-select: none;
+}
+.right_menu ul li .profile_dd:before{
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  right: 150px;
+  border: 10px solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+}
+
   </style>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -418,16 +449,23 @@ margin-left:600px;
       <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
     </div>
   </div>
-
-  <hr>
-
-
-
 </div>
   </div>
 </div>
+<div id="overlay">
+     <img src="Preloader_3.gif" alt="Loading" />
+    
+</div>
 <script type="text/javascript">
   localStorage.setItem('known_mechanic','uid');
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+  $(window).load(function(){
+   // PAGE IS FULLY LOADED  
+   // FADE OUT YOUR OVERLAYING DIV
+   $('#overlay').fadeOut();
+});
 </script>
 </body>
 </html>
