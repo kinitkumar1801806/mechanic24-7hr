@@ -32,11 +32,29 @@ body .no-padding{
 padding-left: 0,
 padding-right: 0;
 }
-
+#small
+{
+display:none;
+}
+@media only screen and (max-width:767px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+.col-md-3
+{
+display: inline-block;
+margin-left:0px;
+}
+}
 {% endblock %}
 {% block body %}
 {% load static %}
-<div class="container">
+<div class="container" id="big">
     <!--Slideshow starts here -->
     {% for product, range, nSlides in allProds %}
     <h5 class="my-4">Flash Sale On {{product.0.category}} - Recommended Items</h5>
@@ -44,7 +62,7 @@ padding-right: 0;
         <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
             <ul class="carousel-indicators">
                 <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
-               {% for i in range %}
+                {% for i in range %}
                 <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
                 {% endfor %}
             </ul>
@@ -65,9 +83,54 @@ padding-right: 0;
                             </div>
                         </div>
                     </div>
-            
-                  {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-                 
+                    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<div class="container" id="small">
+    <!--Slideshow starts here -->
+    {% for product, range, nSlides in allProds %}
+    <h5 class="my-4">Flash Sale On {{product.0.category}} - Recommended Items</h5>
+    <div class="row">
+        <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in range %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="container carousel-inner no-padding">
+                <div class="carousel-item active">
+                    {% for i in product %}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-centered">
+                        <div class="card align-items-center" style="width: 18rem;">
+                            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name|slice:"0:20"}}</h5>
+                                <p class="card-text">{{i.desc|slice:"0:25"}}...</p>
+                                <h6 class="card-title" id="pricepr{{i.id}}">Price: Rs.{{i.price}}</h6>
+                                <span id="divpr{{i.id}}" class="divpr">
+                                    <button id="pr{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
+                                </span>
+                                <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="btn btn-primary cart">QuickView</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:1 and forloop.counter > 0 and not forloop.last %}
                 </div>
                 <div class="carousel-item">
                     {% endif %}
@@ -97,21 +160,22 @@ if (localStorage.getItem('cart') == null) {
 }
 // If the add to cart button is clicked, add/increment the item
 //$('.cart').click(function() {
-    $('.divpr').on('click', 'button.cart', function(){
+$('.divpr').on('click', 'button.cart', function() {
     var idstr = this.id.toString();
     if (cart[idstr] != undefined) {
-        qty=cart[idstr][0]+1;
+        qty = cart[idstr][0] + 1;
     } else {
-        qty=1;
-        name=document.getElementById('name'+idstr).innerHTML;
-        price=document.getElementById('price'+idstr).innerHTML;
-        cart[idstr] = [qty,name,price];
+        qty = 1;
+        name = document.getElementById('name' + idstr).innerHTML;
+        price = document.getElementById('price' + idstr).innerHTML;
+        cart[idstr] = [qty, name, price];
     }
     updateCart(cart);
 });
 //Add Popover to cart
 $('#popcart').popover();
 updatePopover(cart);
+
 function updatePopover(cart) {
     var popStr = "";
     popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
@@ -126,6 +190,7 @@ function updatePopover(cart) {
     document.getElementById('popcart').setAttribute('data-content', popStr);
     $('#popcart').popover();
 }
+
 function clearCart() {
     cart = JSON.parse(localStorage.getItem('cart'));
     for (var item in cart) {
@@ -135,6 +200,7 @@ function clearCart() {
     cart = {};
     updateCart(cart);
 }
+
 function updateCart(cart) {
     var sum = 0;
     for (var item in cart) {
@@ -161,8 +227,8 @@ $('.divpr').on("click", "button.plus", function() {
     updateCart(cart);
 });
 
-$('body').on('click', function (e) {
-    $('[data-toggle="popover"]').each(function () {
+$('body').on('click', function(e) {
+    $('[data-toggle="popover"]').each(function() {
         //the 'is' for buttons that trigger popups
         //the 'has' for icons within a button that triggers a popup
         if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('#popcart').has(e.target).length === 0) {

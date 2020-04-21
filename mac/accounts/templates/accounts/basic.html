@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title%} {% endblock %}</title>
     {%block head%}{%endblock%}
-     <style>
-       {% block css %} {% endblock %}
+    <style>
+        {% block css %} {% endblock %}
 
        #cover {
         background: #222 url('https://unsplash.it/1920/1080/?random')  no-repeat;
@@ -42,308 +42,299 @@
         border-radius: 10px;
       }
   </style>
-  </head>
-  <body style="background: #222 url('https://unsplash.it/1920/1080/?random') no-repeat;background-size:cover;">
+</head>
 
+<body style="background: #222 url('https://unsplash.it/1920/1080/?random') no-repeat;background-size:cover;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Punchture.Com</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
-      
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="shop/">Shop</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="blog/">Blog</a>
-              </li>
-            <li class="nav-item dropdown ">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mechanic
-              </a>
-              <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                <a href="#exampleModalCenter21" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter21" style="background-color: transparent;">
-                  Signup
-              </a>
-              <a href="#exampleModalCenter22" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter22" style="background-color: transparent;">
-                Login
-            </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  User
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                    <a href="#exampleModalCenter" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter" style="background-color: transparent;">
-                        Signup
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop/">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog/">Blog</a>
+                </li>
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mechanic
                     </a>
-                    <a href="#exampleModalCenter1" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter1" style="background-color: transparent;">
-                      Login
-                  </a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/shop/contact/">Contact Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
-              </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                        <a href="#exampleModalCenter21" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter21" style="background-color: transparent;">
+                            Signup
+                        </a>
+                        <a href="#exampleModalCenter22" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter22" style="background-color: transparent;">
+                            Login
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                        <a href="#exampleModalCenter" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter" style="background-color: transparent;">
+                            Signup
+                        </a>
+                        <a href="#exampleModalCenter1" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter1" style="background-color: transparent;">
+                            Login
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop/contact/">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-      </nav>
-      <!--Alert Message-->
-      {% if messages %}
-      {%for message in messages%}
-      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    </nav>
+    <!--Alert Message-->
+    {% if messages %}
+    {%for message in messages%}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
         <strong>Message!</strong> {{message}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      {%endfor%}
-      {%endif%}
-      <!-- Modal User Signup -->
-<div style="background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"  role="document">
-      <div class="modal-content" style=" background:none; " >
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle" style="color:white;"  >User Signup</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="/accounts/user_signup/" class="justify-content-center" method="post">{%csrf_token%}
-                <div class="form-group row">
-                  <label for="staticUser" class="col-sm-2 col-form-label" style="color:white;" >Username</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control mx-2" id="staticUser" name="username" placeholder="Enter your username" required>
-                    </div>
-                  </div>
-                <div class="form-group row">
-                    <label for="firstname" class="col-sm-2 col-form-label" style="color:white;" >First Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control mx-2" id="firstname" name="firstname" placeholder="Enter your username" required>
-                    </div>
-                  </div>
-                   <div class="form-group row">
-                  <label for="lastname" class="col-sm-2 col-form-label" style="color:white;" >Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control mx-2" id="lastname" name="lastname" placeholder="Enter your username" required>
-                    </div>
-                  </div>
-               
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label" style="color:white;" >Email</label>
-                  <div class="col-sm-10">
-                    <input type="email"  class="form-control mx-2" id="staticEmail" name="email" placeholder="email@example.com" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticphone" class="col-sm-2 col-form-label" style="color:white;" >Phone</label>
-                    <div class="col-sm-10">
-                      <input type="tel"  class="form-control mx-2" id="staticphone" name="phone" placeholder="Enter your phone number" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="staticaddress" class="col-sm-2 col-form-label" style="color:white;" >Address</label>
-                    <div class="col-sm-10">
-                      <input type="tel"  class="form-control mx-2" id="staticaddress" name="address" placeholder="Enter your address" required>
-                    </div>
-                  </div>
-                <div class="form-group row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label" style="color:white;"  >Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPassword1" class="col-sm-2 col-form-label" style="color:white;" >Confirm Password</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password"  id="inputPassword1" required>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;" >Close</button>
-                    <input type="submit" class="btn btn-secondary" style="color:white;"  value="Signup">
-                  </div>
-              </form>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-   <!-- Modal User Login -->
-<div style=" background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" style=" background:none; " role="document">
-    <div class="modal-content" style=" background:none;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle" style="color:white;" >User Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-          <form action="/accounts/user_login/" method="post">{%csrf_token%}
-              <div class="form-group row">
-                  <label for="staticUser1" class="col-sm-2 col-form-label" style="color:white;" >Username</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control mx-2" id="staticUser1" name="username" placeholder="Enter your username" required>
-                  </div>
-                </div>
-              <div class="form-group row">
-                <label for="inputPassword11" class="col-sm-2 col-form-label" style="color:white;"  >Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword11" required>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;" >Close</button>
-                <input type="submit" class="btn btn-secondary" value="Login" style="color:white;" >
-              </div>
-            </form>
-      </div>
-      
     </div>
-  </div>
-</div>
-
-  <!-- Modal Mechanic Signup -->
-  <div style=" background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter21" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"  role="document">
-      <div class="modal-content" style=" background:none; ">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle" style="color:white;" >Mechanic Signup</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    {%endfor%}
+    {%endif%}
+    <!-- Modal User Signup -->
+    <div style="background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style=" background:none; ">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">User Signup</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/accounts/user_signup/" class="justify-content-center" method="post">{%csrf_token%}
+                        <div class="form-group row">
+                            <label for="staticUser" class="col-sm-2 col-form-label" style="color:white;">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticUser" name="username" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-sm-2 col-form-label" style="color:white;">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="firstname" name="firstname" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastname" class="col-sm-2 col-form-label" style="color:white;">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="lastname" name="lastname" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label" style="color:white;">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control mx-2" id="staticEmail" name="email" placeholder="email@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticphone" class="col-sm-2 col-form-label" style="color:white;">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticphone" name="phone" placeholder="Enter your phone number" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticaddress" class="col-sm-2 col-form-label" style="color:white;">Address</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticaddress" name="address" placeholder="Enter your address" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label" style="color:white;">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword1" class="col-sm-2 col-form-label" style="color:white;">Confirm Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password" id="inputPassword1" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;">Close</button>
+                            <input type="submit" class="btn btn-secondary" style="color:white;" value="Signup">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <form action="/accounts/mechanic_signup/" method="post">{% csrf_token %}
-                <div class="form-group row">
-                    <label for="staticUser21" class="col-sm-2 col-form-label" style="color:white;" >Username</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control mx-2" id="staticUser21" placeholder="Enter your username" name="username" required>
-                    </div>
-                  </div>
-                    <div class="form-group row">
-                    <label for="firstname1" class="col-sm-2 col-form-label" style="color:white;" >First Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control mx-2" id="firstname1" name="firstname1" placeholder="Enter your username" required>
-                    </div>
-                  </div>
-                   <div class="form-group row">
-                  <label for="lastname1" class="col-sm-2 col-form-label" style="color:white;" >Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control mx-2" id="lastname1" name="lastname1" placeholder="Enter your username" required>
-                    </div>
-                  </div>
-                <div class="form-group row">
-                  <label for="staticEmail21" class="col-sm-2 col-form-label " style="color:white;" >Email</label>
-                  <div class="col-sm-10">
-                    <input type="email"  class="form-control mx-2" id="staticEmail21" name="email" placeholder="email@example.com" required>
-                  </div>
+    </div>
+    </div>
+    <!-- Modal User Login -->
+    <div style=" background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style=" background:none; " role="document">
+            <div class="modal-content" style=" background:none;">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">User Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group row">
-                    <label for="staticphone21" class="col-sm-2 col-form-label " style="color:white;" >Phone</label>
-                    <div class="col-sm-10">
-                      <input type="tel"  class="form-control mx-2" id="staticphone21" name="phone" placeholder="Enter your phone number" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="staticaadhar" class="col-sm-2 col-form-label " style="color:white;" >Aadhar </label>
-                    <div class="col-sm-10">
-                      <input type="tel"  class="form-control mx-2" id="staticaadhar" name="aadhar" placeholder="Enter your aadhar number" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="staticaddress1" class="col-sm-2 col-form-label" style="color:white;" >Address</label>
-                    <div class="col-sm-10">
-                      <input type="tel"  class="form-control mx-2" id="staticaddress1" name="address" placeholder="Enter your address" required>
-                    </div>
-                  </div>
-                <div class="form-group row">
-                  <label for="inputPassword21" class="col-sm-2 col-form-label" style="color:white;"  >Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword21" required>
-                  </div>
+                <div class="modal-body">
+                    <form action="/accounts/user_login/" method="post">{%csrf_token%}
+                        <div class="form-group row">
+                            <label for="staticUser1" class="col-sm-2 col-form-label" style="color:white;">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticUser1" name="username" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword11" class="col-sm-2 col-form-label" style="color:white;">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword11" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;">Close</button>
+                            <input type="submit" class="btn btn-secondary" value="Login" style="color:white;">
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group row">
-                    <label for="inputPassword121" class="col-sm-2 col-form-label" style="color:white;" >Confirm Password</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password"  id="inputPassword121" required>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;" >Close</button>
-                    <input type="submit" class="btn btn-secondary" style="color:white;"  value="Signup">
-                  </div>
-              </form>
+            </div>
         </div>
-        
-      </div>
     </div>
-  </div>
-   <!-- Modal Mechanic Login -->
-<div style="  background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter22" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" style=" background:none; " role="document">
-    <div class="modal-content" style=" background:none; ">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle" style="color:white;" >Mechanic Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="/accounts/mechanic_login/" method="post">{%csrf_token%}
-              <div class="form-group row">
-                  <label for="staticUser22" class="col-sm-2 col-form-label " style="color:white;" >Username</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control mx-2" id="staticUser22" name="username" placeholder="Enter your username" required>
-                  </div>
+    <!-- Modal Mechanic Signup -->
+    <div style=" background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter21" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style=" background:none; ">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">Mechanic Signup</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group row">
-                  <label for="staticmechanic" class="col-sm-2 col-form-label" style="color:white;" >Mechanic Id</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control mx-2" id="staticmechanic" name="mid" placeholder="Enter your mechanic id number" required>
-                  </div>
+                <div class="modal-body">
+                    <form action="/accounts/mechanic_signup/" method="post">{% csrf_token %}
+                        <div class="form-group row">
+                            <label for="staticUser21" class="col-sm-2 col-form-label" style="color:white;">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticUser21" placeholder="Enter your username" name="username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname1" class="col-sm-2 col-form-label" style="color:white;">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="firstname1" name="firstname1" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastname1" class="col-sm-2 col-form-label" style="color:white;">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="lastname1" name="lastname1" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail21" class="col-sm-2 col-form-label " style="color:white;">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control mx-2" id="staticEmail21" name="email" placeholder="email@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticphone21" class="col-sm-2 col-form-label " style="color:white;">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticphone21" name="phone" placeholder="Enter your phone number" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticaadhar" class="col-sm-2 col-form-label " style="color:white;">Aadhar </label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticaadhar" name="aadhar" placeholder="Enter your aadhar number" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticaddress1" class="col-sm-2 col-form-label" style="color:white;">Address</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticaddress1" name="address" placeholder="Enter your address" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword21" class="col-sm-2 col-form-label" style="color:white;">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword21" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword121" class="col-sm-2 col-form-label" style="color:white;">Confirm Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password" id="inputPassword121" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;">Close</button>
+                            <input type="submit" class="btn btn-secondary" style="color:white;" value="Signup">
+                        </div>
+                    </form>
                 </div>
-              <div class="form-group row">
-                <label for="inputPassword22" class="col-sm-2 col-form-label" style="color:white;"  >Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword22" required>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;" >Close</button>
-                <input type="submit" class="btn btn-secondary" style="color:white;" value="Login">
-              </div>
-            </form>
-      </div>
-     
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-  {% block body %} {% endblock %}
-
+    <!-- Modal Mechanic Login -->
+    <div style="  background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter22" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style=" background:none; " role="document">
+            <div class="modal-content" style=" background:none; ">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">Mechanic Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/accounts/mechanic_login/" method="post">{%csrf_token%}
+                        <div class="form-group row">
+                            <label for="staticUser22" class="col-sm-2 col-form-label " style="color:white;">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticUser22" name="username" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticmechanic" class="col-sm-2 col-form-label" style="color:white;">Mechanic Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticmechanic" name="mid" placeholder="Enter your mechanic id number" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword22" class="col-sm-2 col-form-label" style="color:white;">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword22" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;">Close</button>
+                            <input type="submit" class="btn btn-secondary" style="color:white;" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block body %} {% endblock %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     {% block js %} {% endblock %}
-  </body>
+</body>
+
 </html>

@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Products, Contact, Orders, OrderUpdate,Payment_history
 from math import ceil
 import json
+from django.contrib import  messages
 from django.views.decorators.csrf import csrf_exempt
 from Paytm import Checksum
 # Create your views here.
@@ -146,12 +147,13 @@ def handlerequest(request):
 
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
-        if response_dict['RESPCODE'] == '01':
-            histroy=Payment_history(mail=request.user.email,payment_json=response_dict)
-            histroy.save()
-            print('order successful')
+        if response_dict['RESPCODE'] == '01': 
+            if request.user.id!=None:
+                histroy=Payment_history(mail=request.user.email,payment_json=response_dict)
+                histroy.save()
+            print('Order successful')
         else:
-            messages.error(request,'order was not successful because' + response_dict['RESPMSG'])
+            messages.error(request,'Order was not successful because' + response_dict['RESPMSG'])
             return redirect('Checkout')
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
 

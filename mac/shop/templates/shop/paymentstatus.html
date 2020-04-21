@@ -1,9 +1,31 @@
 {% extends 'shop/basic.html' %}
-{% block title%} My Awesome Cart Tracker{% endblock %}
+{% block title%}Punchture.Com{% endblock %}
+{%block css%}
+ #demom
+  {
+    padding-left:400px;
+  }
+@media only screen and (max-width:767px)
+{
+  body
+  {
+    font-size:12px;
+  }
+  .table
+  {
+    margin-left:-250px;
+  }
+  #demom
+  {
+    margin-left:-20px;
+    padding-left:400px;
+  }
+}
+{%endblock%}
 {% block body %}
 <div class="container">
    
-    <div class="col my-4">
+    <div class="col my-4" >
 
         <h2>Payment status regarding your order Id {{response.ORDERID}}</h2>
         {% if response.RESPCODE == '01' %}
@@ -13,10 +35,10 @@
         {% endif%}
 
     </div>
-    <table class="table" >
+    <table class="table">
   <thead class="thead-light">
     <tr>
-        <th scope="col " colspan="2"><span style="padding-left:450px;">Payment Details</span></th>
+        <th scope="col " colspan="2"><span id="demom">Payment Details</span></th>
 
     </tr>
   </thead>
@@ -34,11 +56,11 @@
 </table>
 
 
-
-<button type="button" class="btn btn-primary " style="margin-left:450px;margin-top:20px;" id="cmd">Download PDF</button>
-
+ <div class="text-center">
+<button type="button" class="btn btn-primary align-item-center"  id="cmd" onclick="window.print()">Print</button>
 </div>
-<script>
+</div>
+<script type="text/javascript">
   localStorage.removeItem('cart');
 </script>
 {% endblock %}
