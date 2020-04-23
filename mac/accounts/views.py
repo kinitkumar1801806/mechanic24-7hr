@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from django.conf import settings
 import math, random,string
-from .models import User_Accounts,Mechanic_Accounts
+from .models import User_Accounts,Mechanic_Accounts,Contact
 from math import ceil
 
 def home1(request):
@@ -294,3 +294,23 @@ def search(request):
 
 def track(request):
     return render(request,"accounts/track.html")
+
+def addcontact(request,myid):
+    user_name=request.user.username
+    mechanic=Mechanic_Accounts.objects.filter(id=myid)
+    mechanic_name=mechanic[0].mymechanic.username
+    mechanic_id=mechanic[0].mechanic_id
+    contact=Contact(user_name=user_name,mechanic_name=mechanic_name,mechanic_id=mechanic_id)
+    contact.save()
+    messages.success(request,"Successfully added the mechanic in your contact list")
+    return redirect('mechanics')
+
+def contacts(request):
+     allmech=[]
+     contacts=Contact.objects.filter(user_name=request.user.username)
+     for con in contacts:
+         mid=con.mechanic_id
+         mechanic=Mechanic_Accounts.objects.filter(mechanic_id=mid)
+         for mech in mechanic:
+               allmech.append(mech)     
+     return render(request,"accounts/contacts.html",{'allmech':allmech})    

@@ -26,3 +26,10 @@ class Mechanic_Accounts(models.Model):
     totalsatisfiedcustomer=models.IntegerField(default=0)
     timeperiod=models.CharField(max_length=100,default="1 year")
     Experience=models.CharField(max_length=100,default="Beginner")
+
+class Contact(models.Model):
+    user_name=models.CharField(max_length=100,default='')
+    mechanic_name=models.CharField(max_length=100,default='')
+    mechanic_id=models.CharField(max_length=100,default='')
+    rate=models.IntegerField(default=0)
+    satisfied=models.CharField(max_length=100,default='')

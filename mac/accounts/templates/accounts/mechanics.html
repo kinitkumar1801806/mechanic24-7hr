@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1.0">
 <head>
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,6 +17,7 @@ background-color: blue;
 .col-md-3 img{
 width: 321px;
 height: 321px;
+text-align: center;
 }
 body .carousel-indicator li{
 background-color: blue;
@@ -25,7 +27,7 @@ bottom: 0;
 }
 body .carousel-control-prev-icon,
 body .carousel-control-next-icon{
-background-color: blue;
+background-color: transparent;
 }
 .carousel-control-prev,
 .carousel-control-next{
@@ -52,6 +54,154 @@ padding-right: 0;
 .bb:hover, a:hover {
   opacity: 0.7;
 }
+.col-md-3
+{
+    position: relative;
+    margin-right: 60px;
+}
+#small
+{
+display:none;
+}
+#medium
+{
+	display: none;
+}
+@media only screen and (max-width:360px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+	display: none;
+}
+.col-md-3
+{
+display: inline-block;
+text-align: center;
+margin-left: -25px;
+}
+body .carousel-control-prev-icon
+{
+background-color: transparent;
+margin-left:-20px;	
+}
+body .carousel-control-next-icon{
+background-color: transparent;
+margin-right:-20px;
+}
+}
+@media only screen and (min-width:375px) and (max-width: 400px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+	display: none;
+}
+.col-md-3
+{
+display: inline-block;
+text-align: center;
+margin-left: -18px;
+}
+body .carousel-control-prev-icon
+{
+background-color: transparent;
+margin-left:-20px;	
+}
+body .carousel-control-next-icon{
+background-color: transparent;
+margin-right:-20px;
+}
+}
+@media only screen and (min-width:414px) and (max-width: 500px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+	display: none;
+}
+.col-md-3
+{
+display: inline-block;
+text-align: center;
+margin-left: 0px;
+}
+body .carousel-control-prev-icon
+{
+background-color: transparent;
+margin-left:-20px;	
+}
+body .carousel-control-next-icon{
+background-color: transparent;
+margin-right:-20px;
+}
+}
+@media only screen and (min-width:900px) and (max-width: 1200px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:none;
+}
+#medium
+{
+	display:inline-block;
+}
+.col-md-3
+{
+display: inline-block;
+margin-left:110px;
+}
+}
+@media only screen and (min-width:768px) and (max-width: 900px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+	display:none;
+}
+.col-md-3
+{
+display: inline-block;
+margin-left:190px;
+
+}
+body .carousel-control-prev-icon
+{
+background-color: transparent;
+margin-left: 40px;	
+}
+body .carousel-control-next-icon{
+background-color: transparent;
+margin-right: 40px;
+}
+}
 </style>
 </head>
 <body>
@@ -66,7 +216,7 @@ padding-right: 0;
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/accounts/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/shop/">Shop</a>
@@ -87,7 +237,19 @@ padding-right: 0;
           </form>
         </div>
       </nav>
-<div class="container">
+       <!--Alert Message-->
+    {% if messages %}
+    {%for message in messages%}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message!</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {%endfor%}
+    {%endif%}
+    <!--for laptop devices-->
+<div class="container" id="big">
     <!--Slideshow starts here -->
     {% for product, range, nSlides in allProds %}
     <h5 class="my-4" style="color:white;font-size:36px;"> {{product.0.expertat}}</h5>
@@ -99,12 +261,12 @@ padding-right: 0;
                 <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
                 {% endfor %}
             </ul>
-            <div class="container carousel-inner no-padding">
-                <div class="carousel-item active" >
+            <div class="container carousel-inner no-padding col-centered">
+                <div class="carousel-item active " >
                     {% for i in product %}
-                    <div class="col-xs-3 col-sm-3 col-md-3"  >
-                        <div class="card align-items-center bg-dark" style="width: 20rem;">
-                            <img src='{{i.image}}' class="card-img-top" alt="...">
+                    <div class="col-md-3">
+                        <div class="card align-items-center bg-dark " style="width: 20rem;">
+                            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-light align-items-center" id="namepr{{i.id}}">{{i.mymechanic.first_name}} {{i.mymechanic.last_name}}</h5>
                                 <p class="card-text">
@@ -113,7 +275,10 @@ padding-right: 0;
                                 </p>
                                 </div>
                                 <p >
+                                <a href="/accounts/addcontact/{{i.id}}"><button id="qv{{i.id}}" class="bb px-5 py-1"style="width:190px;">Contact</button></a></p>
+                                <p >
                                 <a href="/accounts/mechanicview/{{i.id}}"><button id="qv{{i.id}}" class="bb px-5 py-1">View Profile</button></a></p>
+                                
 
                         </div>
                     </div>
@@ -135,77 +300,113 @@ padding-right: 0;
     </div>
     {% endfor %}
 </div>
-<script>
-// Find out the cart items from localStorage
-if (localStorage.getItem('cart') == null) {
-    var cart = {};
-} else {
-    cart = JSON.parse(localStorage.getItem('cart'));
-    updateCart(cart);
-}
-// If the add to cart button is clicked, add/increment the item
-//$('.cart').click(function() {
-    $('.divpr').on('click', 'button.cart', function(){
-    var idstr = this.id.toString();
-    if (cart[idstr] != undefined) {
-        cart[idstr] = cart[idstr] + 1;
-    } else {
-        cart[idstr] = 1;
-    }
-    updateCart(cart);
-});
-//Add Popover to cart
-$('#popcart').popover();
-updatePopover(cart);
-function updatePopover(cart) {
-    console.log('We are inside updatePopover');
-    var popStr = "";
-    popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
-    var i = 1;
-    for (var item in cart) {
-        popStr = popStr + "<b>" + i + "</b>. ";
-        popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] + '<br>';
-        i = i + 1;
-    }
-    popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-primary' id ='checkout'>Checkout</button></a> <button class='btn btn-primary' onclick='clearCart()' id ='clearCart'>Clear Cart</button>     "
-    console.log(popStr);
-    document.getElementById('popcart').setAttribute('data-content', popStr);
-    $('#popcart').popover('show');
-}
-function clearCart() {
-    cart = JSON.parse(localStorage.getItem('cart'));
-    for (var item in cart) {
-        document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-primary cart">Add To Cart</button>'
-    }
-    localStorage.clear();
-    cart = {};
-    updateCart(cart);
-}
-function updateCart(cart) {
-    var sum = 0;
-    for (var item in cart) {
-        sum = sum + cart[item];
-        document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    document.getElementById('cart').innerHTML = sum;
-    console.log(cart);
-    updatePopover(cart);
-}
-// If plus or minus button is clicked, change the cart as well as the display value
-$('.divpr').on("click", "button.minus", function() {
-    a = this.id.slice(7, );
-    cart['pr' + a] = cart['pr' + a] - 1;
-    cart['pr' + a] = Math.max(0, cart['pr' + a]);
-    document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
-    updateCart(cart);
-});
-$('.divpr').on("click", "button.plus", function() {
-    a = this.id.slice(6, );
-    cart['pr' + a] = cart['pr' + a] + 1;
-    document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
-    updateCart(cart);
-});
-</script>
+<!--for ipad devices-->
+<div class="container" id="medium">
+    <!--Slideshow starts here -->
+    {% for product, range, nSlides in allProds %}
+    <h5 class="my-4" style="color:white;font-size:36px;"> {{product.0.expertat}}</h5>
+    <div class="row">
+        <div id="demo2{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in range %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="container carousel-inner no-padding col-centered">
+                <div class="carousel-item active " >
+                    {% for i in product %}
+                    <div class="col-md-3">
+                        <div class="card align-items-center bg-dark " style="width: 20rem;">
+                            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-light align-items-center" id="namepr{{i.id}}">{{i.mymechanic.first_name}} {{i.mymechanic.last_name}}</h5>
+                                <p class="card-text">
+                                <p class="title text-light mx-2">{{i.bio|slice:"0:25"}}</p>
+
+                                </p>
+                                </div>
+                                <p >
+                                <a href="/accounts/addcontact/{{i.id}}"><button id="qv{{i.id}}" class="bb px-5 py-1"style="width:190px;">Contact</button></a></p>
+                                <p >
+                                <a href="/accounts/mechanicview/{{i.id}}"><button id="qv{{i.id}}" class="bb px-5 py-1">View Profile</button></a></p>
+                                
+
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:2 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev" href="#demo2{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo2{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<!--for small devices-->
+
+<div class="container" id="small">
+    <!--Slideshow starts here -->
+    {% for product, range, nSlides in allProds %}
+    <h5 class="my-4" style="color:white;font-size:36px;"> {{product.0.expertat}}</h5>
+    <div class="row">
+        <div id="demo1{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in range %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="container carousel-inner no-padding col-centered">
+                <div class="carousel-item active " >
+                    {% for i in product %}
+                    <div class="col-md-3">
+                        <div class="card align-items-center bg-dark " style="width: 20rem;">
+                            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-light align-items-center" id="namepr{{i.id}}">{{i.mymechanic.first_name}} {{i.mymechanic.last_name}}</h5>
+                                <p class="card-text">
+                                <p class="title text-light mx-2">{{i.bio|slice:"0:25"}}</p>
+
+                                </p>
+                                </div>
+                                <p >
+                                <a href="/accounts/addcontact/{{i.id}}"><button id="qv{{i.id}}" class="bb px-5 py-1"style="width:190px;">Contact</button></a></p>
+                                <p >
+                                <a href="/accounts/mechanicview/{{i.id}}"><button id="qv{{i.id}}" class="bb px-5 py-1">View Profile</button></a></p>
+                                
+
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:1 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev" href="#demo1{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo1{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+ <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>

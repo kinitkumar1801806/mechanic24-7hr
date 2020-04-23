@@ -2,7 +2,7 @@
 {% block title%}Puncture.Com{% endblock%}
 {%block head%}
 {%if request.user.is_authenticated%}
-<script>
+<script>  
 if(localStorage.getItem('known_mechanic')=="mid")
   window.location="/accounts/welcome_mechanic/";
 else if(localStorage.getItem('known_mechanic')=="uid")

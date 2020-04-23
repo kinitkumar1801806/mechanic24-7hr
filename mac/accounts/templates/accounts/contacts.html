@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .col-md-3
+{
+display: inline-block;
+margin-left:-4px;
+}
+.carousel-indicators .active {
+background-color: blue;
+}
+ img{
+width: 321px;
+height: 321px;
+}
+body .carousel-indicator li{
+background-color: blue;
+}
+body .carousel-indicators{
+bottom: 0;
+}
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon{
+background-color: blue;
+}
+.carousel-control-prev,
+.carousel-control-next{
+top: auto;
+bottom: auto;
+padding-top: 222px;
+}
+body .no-padding{
+padding-left: 0,
+padding-right: 0;
+}
+.bb {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.bb:hover, a:hover {
+  opacity: 0.7;
+}
+
+#small
+{
+display:none;
+}
+#medium
+{
+  display: none;
+}
+
+@media only screen and (max-width:360px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+  display: none;
+}
+
+}
+@media only screen and (min-width:375px) and (max-width: 400px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+  display: none;
+}
+
+}
+@media only screen and (min-width:414px) and (max-width: 500px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:inline-block;
+}
+#medium
+{
+  display: none;
+}
+
+}
+@media only screen and (min-width:900px) and (max-width: 1200px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:none;
+}
+#medium
+{
+  display:inline-block;
+}
+.card
+{
+  margin-left: 130px;
+}
+}
+@media only screen and (min-width:768px) and (max-width: 900px)
+{
+#big{
+display:none;
+}
+#small
+{
+display:none;
+}
+#medium
+{
+  display:inline-block;
+}
+.card
+{
+  margin-left:40px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+    <body style="background: #222 url('https://unsplash.it/1920/1080/?random') no-repeat;background-size:cover;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Puncture.Com</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop/">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop/contact/">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop/about">About Us</a>
+                    </li>
+                </ul>
+                <form method="get" action="/accounts/search/" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <!--Alert Message-->
+        {% if messages %}
+        {%for message in messages%}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>Message!</strong> {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {%endfor%}
+        {%endif%}
+        <div class="container" id="big">
+            <div class="row my-5">
+                {%for mech in allmech%}
+                <div class="card  mx-4" style="width: 20rem;">
+                    <img src="/media/{{mech.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{mech.mymechanic.username}}
+                            <i> <sub class="card-text" style="margin-top: -20px;font-size:12px;">{{mech.expertat}} Mechanic</sub></i></h5><br />
+                        <p class="card-text">{{mech.bio}}</p>
+                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+            </div>
+            <div class="row  my-5">
+                {%endif%}
+                {%endfor%}
+            </div>
+        </div>
+        <div class="container" id="medium">
+            <div class="row my-5">
+                {%for mech in allmech%}
+                <div class="card" style="width: 20rem;">
+                    <img src="/media/{{mech.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{mech.mymechanic.username}}
+                            <i> <sub class="card-text" style="margin-top: -20px;font-size:12px;">{{mech.expertat}} Mechanic</sub></i></h5><br />
+                        <p class="card-text">{{mech.bio}}</p>
+                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:2 and forloop.counter > 0 and not forloop.last %}
+            </div>
+            <div class="row  my-5">
+                {%endif%}
+                {%endfor%}
+            </div>
+        </div>
+        <div class="container" id="small">
+            <div class="row my-5">
+                {%for mech in allmech%}
+                <div class="card" style="width: 20rem;">
+                    <img src="/media/{{mech.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{mech.mymechanic.username}}
+                            <i> <sub class="card-text" style="margin-top: -20px;font-size:12px;">{{mech.expertat}} Mechanic</sub></i></h5><br />
+                        <p class="card-text">{{mech.bio}}</p>
+                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:1 and forloop.counter > 0 and not forloop.last %}
+            </div>
+            <div class="row  my-5">
+                {%endif%}
+                {%endfor%}
+            </div>
+          </div>
+            <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    </body>
+
+</html>

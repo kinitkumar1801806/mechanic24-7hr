@@ -20,5 +20,7 @@ urlpatterns = [
     path('mechanics/',views.mechanics,name="mechanics"),
     path('mechanicview/<int:myid>',views.mechanicview,name="mechanicview"),
     path('search/',views.search,name="search"),
-    path('track/',views.track,name="track")
+    path('addcontact/<int:myid>',views.addcontact,name="addcontact"),
+    path('track/',views.track,name="track"),
+    path('contacts/',views.contacts,name="contacts"),
 ]
