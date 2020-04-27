@@ -300,6 +300,13 @@ def addcontact(request,myid):
     mechanic=Mechanic_Accounts.objects.filter(id=myid)
     mechanic_name=mechanic[0].mymechanic.username
     mechanic_id=mechanic[0].mechanic_id
+    contacts=Contact.objects.filter(user_name=request.user.username)
+    for con in contacts:
+         mid=con.mechanic_id
+         mechanic=Mechanic_Accounts.objects.filter(mechanic_id=mid)
+         if mechanic[0].mymechanic.username==mechanic_name:
+            messages.error(request,"Already added to your contact list")
+            return redirect('mechanics')
     contact=Contact(user_name=user_name,mechanic_name=mechanic_name,mechanic_id=mechanic_id)
     contact.save()
     messages.success(request,"Successfully added the mechanic in your contact list")
@@ -314,3 +321,31 @@ def contacts(request):
          for mech in mechanic:
                allmech.append(mech)     
      return render(request,"accounts/contacts.html",{'allmech':allmech})    
+
+def remove(request,myid):
+   if request.method=='POST':
+       name=request.POST.get('mechanic'+ str(myid))     
+       contacts=Contact.objects.filter(mechanic_name=name).delete()
+   return redirect('contacts')  
+
+def comment(request,myid):
+    if request.method=='POST':
+        name=request.POST.get('mechanic'+str(myid))
+        rate=request.POST.get('rating'+str(myid))
+        satisfy=request.POST.get('satisfaction'+str(myid))
+        mech_id=request.POST.get('mech_id'+str(myid))
+        mechanic=Mechanic_Accounts.objects.all()
+        for mech in mechanic:
+           if mech.mechanic_id==mech_id:
+              if mech.mymechanic.username==name:
+                mech.totalcustomer=mech.totalcustomer+1
+                mech.ratings=((mech.ratings*(mech.totalcustomer-1))+float(rate))/mech.totalcustomer
+                if satisfy=="Yes":
+                    mech.totalsatisfiedcustomer=mech.totalsatisfiedcustomer+1
+                mech.save()  
+                messages.success(request,"Successfully commented")
+                return redirect('contacts')  
+           
+        messages.error(request,"Please enter the correct mechanic id in order to comment the profile")
+        return redirect('contacts')           
+    return redirect('contacts')            

@@ -23,4 +23,6 @@ urlpatterns = [
     path('addcontact/<int:myid>',views.addcontact,name="addcontact"),
     path('track/',views.track,name="track"),
     path('contacts/',views.contacts,name="contacts"),
+    path('remove/<int:myid>',views.remove,name="remove"),
+    path('comment/<int:myid>',views.comment,name="comment"),
 ]

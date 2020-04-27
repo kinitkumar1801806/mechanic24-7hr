@@ -17,7 +17,7 @@ class Mechanic_Accounts(models.Model):
     aadhar=models.IntegerField(default=0)
     mechanic_id=models.CharField(max_length=15,default='')
     image = models.ImageField(upload_to='shop/images', default="")
-    ratings=models.IntegerField(default=0)
+    ratings=models.FloatField(default=0)
     expertat=models.CharField(max_length=1000,default="")
     avg_amt=models.IntegerField(default=0)
     bio=models.CharField(max_length=3000,default="")

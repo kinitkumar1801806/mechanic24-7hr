@@ -76,7 +76,10 @@ display:inline-block;
 {
   display: none;
 }
-
+.card
+{
+  margin-left: 20px;
+}
 }
 @media only screen and (min-width:375px) and (max-width: 400px)
 {
@@ -91,7 +94,10 @@ display:inline-block;
 {
   display: none;
 }
-
+.card
+{
+  margin-left: 30px;
+}
 }
 @media only screen and (min-width:414px) and (max-width: 500px)
 {
@@ -106,7 +112,10 @@ display:inline-block;
 {
   display: none;
 }
-
+.card
+{
+  margin-left: 50px;
+}
 }
 @media only screen and (min-width:900px) and (max-width: 1200px)
 {
@@ -197,11 +206,13 @@ display:none;
                 <div class="card  mx-4" style="width: 20rem;">
                     <img src="/media/{{mech.image}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{mech.mymechanic.username}}
+                        <h5 class="card-title{{mech.id}}">{{mech.mymechanic.username}}
                             <i> <sub class="card-text" style="margin-top: -20px;font-size:12px;">{{mech.expertat}} Mechanic</sub></i></h5><br />
                         <p class="card-text">{{mech.bio}}</p>
-                        <a href="#" class="btn btn-primary">Go Somewhere</a>
-                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        <p>
+                            <a href="#exampleModalCenter{{mech.id}}" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter{{mech.id}}" style="background-color: transparent;"><button id="{{mech.id}}" class="bb px-5 py-1" style="width:230px;">Comment</button></a></p>
+                        <p>
+                            <a href="#exampleModalCenter1{{mech.id}}" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter1{{mech.id}}" style="background-color: transparent;"><button id="{{mech.id}}" class="bb px-5 py-1">Remove</button></a></p>
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
@@ -217,11 +228,13 @@ display:none;
                 <div class="card" style="width: 20rem;">
                     <img src="/media/{{mech.image}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{mech.mymechanic.username}}
+                        <h5 class="card-title{{mech.id}}">{{mech.mymechanic.username}}
                             <i> <sub class="card-text" style="margin-top: -20px;font-size:12px;">{{mech.expertat}} Mechanic</sub></i></h5><br />
                         <p class="card-text">{{mech.bio}}</p>
-                        <a href="#" class="btn btn-primary">Go Somewhere</a>
-                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        <p>
+                            <a href="#exampleModalCenter{{mech.id}}" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter{{mech.id}}" style="background-color: transparent;"><button id="{{mech.id}}" class="bb px-5 py-1" style="width:230px;">Comment</button></a></p>
+                        <p>
+                            <a href="#exampleModalCenter1{{mech.id}}" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter1{{mech.id}}" style="background-color: transparent;"><button id="{{mech.id}}" class="bb px-5 py-1">Remove</button></a></p>
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:2 and forloop.counter > 0 and not forloop.last %}
@@ -237,11 +250,13 @@ display:none;
                 <div class="card" style="width: 20rem;">
                     <img src="/media/{{mech.image}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{mech.mymechanic.username}}
+                        <h5 class="card-title{{mech.id}}">{{mech.mymechanic.username}}
                             <i> <sub class="card-text" style="margin-top: -20px;font-size:12px;">{{mech.expertat}} Mechanic</sub></i></h5><br />
                         <p class="card-text">{{mech.bio}}</p>
-                        <a href="#" class="btn btn-primary">Go Somewhere</a>
-                        <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        <p>
+                            <a href="#exampleModalCenter{{mech.id}}" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter{{mech.id}}" style="background-color: transparent;"><button id="{{mech.id}}" class="bb px-5 py-1" style="width:230px;">Comment</button></a></p>
+                        <p>
+                            <a href="#exampleModalCenter1{{mech.id}}" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter1{{mech.id}}" style="background-color: transparent;"><button id="{{mech.id}}" class="bb px-5 py-1">Remove</button></a></p>
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:1 and forloop.counter > 0 and not forloop.last %}
@@ -250,10 +265,77 @@ display:none;
                 {%endif%}
                 {%endfor%}
             </div>
-          </div>
-            <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        </div>
+        <!--Remove Contact-->
+        {%for mech in allmech%}
+        <div style=" background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter1{{mech.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="background: none;" role="document">
+                <div class="modal-content " style=" background-color:white;">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">Remove</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/accounts/remove/{{mech.id}}" method="post">{%csrf_token%}
+                            <input type="hidden" value="{{mech.mymechanic.username}}" name="mechanic{{mech.id}}">
+                            <input type="submit" class="btn btn-secondary " value="Remove" style="color:white;margin-left: 130px;">
+                            <button type="button" class="btn btn-secondary " data-dismiss="modal" style="color:white;margin-left: 30px;">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+        <!--Comments on Contact-->
+        {%for mech in allmech%}
+        <div style=" background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;" class="modal fade" id="exampleModalCenter{{mech.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style=" background:none; " role="document">
+                <div class="modal-content" style=" background:none;">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">Comment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/accounts/comment/{{mech.id}}" method="post">{%csrf_token%}
+                           <div class="form-group row">
+                                <label for="user1" class="col-sm-2 col-form-label" style="color:white;">Mechanic Id</label>
+                                <div class="col-sm-10">
+                                    <input type="text"class="form-control mx-2" id="user1" name="mech_id{{mech.id}}" placeholder="Enter the mechanic id" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                  <input type="hidden" value="{{mech.mymechanic.username}}" name="mechanic{{mech.id}}">
+                                <label for="staticUser1" class="col-sm-2 col-form-label" style="color:white;">Rating</label>
+                                <div class="col-sm-10">
+                                    <input type="number" min="0.0" max="10.0"  step="any" class="form-control mx-2" id="staticUser1" name="rating{{mech.id}}" placeholder="Enter a number from 0 to 10" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="input11" class="col-sm-2 col-form-label" style="color:white;">Satisfied</label>
+                                <div class="col-sm-10">
+                                    <select id="input11"  class="form-control mx-2" name="satisfaction{{mech.id}}">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white;">Cancel</button>
+                                <input type="submit" class="btn btn-secondary" value="Submit" style="color:white;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     </body>
 
 </html>
