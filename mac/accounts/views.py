@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib import  messages
@@ -7,7 +8,10 @@ from django.contrib.auth import authenticate, login,logout
 from django.conf import settings
 import math, random,string
 from .models import User_Accounts,Mechanic_Accounts,Contact
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from math import ceil
+from twilio.rest import Client
+import os
 
 def home1(request):
     return render(request,'accounts/home.html')
@@ -24,13 +28,13 @@ def msignup(request):
         pass2=request.POST.get('password2','')
         fname=request.POST.get('firstname1','')
         lname=request.POST.get('lastname1','')
-        if len(uname)<4 and len(uname)>15 and not uname.isalnum():
+        if len(uname)<4 or len(uname)>15 or not uname.isalnum():
             messages.error(request,"Username Should be greater than 4 and less than 15 and should contain letters and numbers")
             return redirect('home1')
-        if len(phone)<10 and len(phone)>10:
+        if len(phone)<10 or len(phone)>10:
             messages.error(request,"Please enter a valid phone number")
             return redirect('home1')
-        if len(pass1)<8 and len(pass1)>15 and not pass1.isalnum():
+        if len(pass1)<8 :
             messages.error(request,"Password should be greater than 8 and less than 15 amd should contain letters and numbers ")
             return redirect('home1')
         if pass1 != pass2:
@@ -62,20 +66,23 @@ def mlogin(request):
         for md in mechanic:
           if md.mechanic_id == mid:
              float=1
-        if float==1:
-            user=authenticate(username=uname,password=pass1)
-        else:
-            messages.error(request,"Please enter the correct mechanic id or it will be available on the email which has been send to your email during signup")
+        if float==0:
+            messages.error(request,"There is no mechanic with this mechanic id.Please enter correct mechanic id.")
             return redirect("home1")
             
         if float==1:     
              user=authenticate(username=uname,password=pass1)
-        else:
-            messages.error(request,"There is no mechanic with this mechanic id.Please enter correct mechanic id.")
-            return redirect('home1')
-        if user is not None:
-           login(request,user)
-    return render(request,'accounts/welcome_mechanic.html')
+             if user is not None:
+                 login(request,user)
+                 luser=Mechanic_Accounts.objects.all()
+                 for lu in luser:
+                     if lu.mymechanic.username == user.username:
+                         image=lu.image
+                         params={'add':add,'phone':phone,'image':image}
+                     else:
+                         messages.error(request,"Please enter correct login Credentials.If not registered,register first.")
+                         return redirect('home1')
+    return render(request,'accounts/welcome_mechanic.html',params)
 
 
 def usignup(request):
@@ -89,13 +96,13 @@ def usignup(request):
         pass2=request.POST.get('password2','')
         fname=request.POST.get('firstname','')
         lname=request.POST.get('lastname','')
-        if len(uname)<4 and len(uname)>15 and not uname.isalnum():
+        if len(uname)<4 or len(uname)>15 or not uname.isalnum():
             messages.error(request,"Username Should be greater than 4 and less than 15 and should contain letters and numbers")
             return redirect('home1')
-        if len(phone)<10 and len(phone)>10:
+        if len(phone)<10 or len(phone)>10:
             messages.error(request,"Please enter a valid phone number")
             return redirect('home1')
-        if len(pass1)<8 and len(pass1)>15 and not pass1.isalnum():
+        if len(pass1)<8:
             messages.error(request,"Password should be greater than 8 and less than 15 amd should contain letters and numbers ")
             return redirect('home1')
         if pass1 != pass2:
@@ -213,9 +220,9 @@ def wuser(request):
             image=lu.image
             dob=lu.dob
             bio=lu.bio
+            vehicle=lu.vehicle
+            model=lu.model
             params={'add':add,'phone':phone,'image':image}
-        
-                
     return render(request,'accounts/welcome_user.html',params)
 
 def wmechanic(request):
@@ -248,7 +255,11 @@ def uprofile(request):
                 add=lu.address
                 phone=lu.phone
                 image=lu.image
-                params={'add':add,'phone':phone,'image':image}
+                dob=lu.dob
+                bio=lu.bio
+                vehicle=lu.vehicle
+                model=lu.model
+                params={'add':add,'phone':phone,'image':image,'dob':dob,'bio':bio,'vehicle':vehicle,'model':model}
     return render(request,'accounts/user_profile.html',params)
 
 def mechanics(request):
@@ -319,8 +330,16 @@ def contacts(request):
          mid=con.mechanic_id
          mechanic=Mechanic_Accounts.objects.filter(mechanic_id=mid)
          for mech in mechanic:
-               allmech.append(mech)     
-     return render(request,"accounts/contacts.html",{'allmech':allmech})    
+               allmech.append(mech)   
+     page = request.GET.get('page', 1)
+     paginator = Paginator(allmech, 1)
+     try:
+        photos = paginator.page(page)
+     except PageNotAnInteger:
+        photos = paginator.page(1)
+     except EmptyPage:
+        photos = paginator.page(paginator.num_pages)            
+     return render(request,"accounts/contacts.html",{'allmech':allmech,'photos':photos})    
 
 def remove(request,myid):
    if request.method=='POST':
@@ -348,4 +367,97 @@ def comment(request,myid):
            
         messages.error(request,"Please enter the correct mechanic id in order to comment the profile")
         return redirect('contacts')           
-    return redirect('contacts')            
+    return redirect('contacts')   
+
+def changepassword(request):
+    return render(request,"accounts/ChangePassword.html")   
+def change_password(request):
+    if request.method=="POST":
+        old_pass=request.POST.get('oldpass','')
+        new_pass1=request.POST.get('newpass','')
+        new_pass2=request.POST.get('confirmpass','')
+        user1=authenticate(username=request.user.username,password=old_pass)
+        if user1 is  None:
+              messages.error(request,"Please Enter the Correct old password")
+              return redirect('changepassword')
+        if len(new_pass1)<8 :
+            messages.error(request,"Password should be greater than 8 and less than 15")
+            return redirect('changepassword')
+        if new_pass1 != new_pass2:
+            messages.error(request,"Password do not match")
+            return redirect('changepassword')
+        users=User.objects.get(username=request.user.username)
+        users.set_password(new_pass1)
+        print(users)
+        users.save()
+        user=authenticate(username=request.user.username,password=new_pass1)
+        if user is not None:
+            login(request,user)
+            messages.success(request,"You have successully changed your password")
+            return redirect('wuser')
+    return redirect('wuser')            
+
+def update_profile(request):
+    global otp1
+    if request.method=="POST":
+      first_name=request.POST.get('firstname','')
+      last_name=request.POST.get('lastname','')
+      email=request.POST.get('email','')
+      phone=request.POST.get('phone','')
+      dob=request.POST.get('dob','')
+      address=request.POST.get('address','')
+      bio=request.POST.get('bio','')
+      vehicle=request.POST.get('vehicle','')
+      model=request.POST.get('model','')
+    users=User_Accounts.objects.all()
+    for us in users:
+        if us.myuser.username==request.user.username:
+            us.bio=bio
+            us.address=address
+            us.dob=dob
+            us.vehicle=vehicle
+            us.model=model
+            us.save()
+    users=User.objects.get(username=request.user.username)
+    users.email=email
+    users.firstname=first_name
+    users.lastname=last_name
+    users.save()
+    otp1=generateOTP()
+    account_sid = 'ACc1f37b81f1c1964d0c948a0d4bf1c391'
+    auth_token = 'c762aea7a7f7815baa8f4a4f5d5a02e9'
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+         body='This is an sms from Punchter.Com.'+otp1+' is the one time password to verify your phone number',
+         from_='+12058595072',
+         to='+919006317054'
+     )
+    print(message.sid)
+    return render(request,'accounts/verify_phone.html',{'phone':phone})
+def verify_phone(request):
+    if request.method=="POST":
+        code=request.POST.get('code','')
+        phone=request.POST.get('phone','')
+        if code==otp1:
+            users=User_Accounts.objects.all()
+            for us in users:
+                if us.myuser.username==request.user.username:
+                    us.phone=phone
+                    us.save()
+                    messages.success(request,"Your profile is updated")
+                    return redirect('uprofile') 
+        else:
+          messages.error(request,"Please enter the valid otp") 
+          return redirect('verify_phone')           
+    return redirect('uprofile')    
+
+def upload_image(request):
+   if request.method=="POST":
+     img=request.FILES['image']
+
+   users=User_Accounts.objects.all() 
+   for us in users:
+      if us.myuser.username==request.user.username: 
+         us.image=img
+         us.save()
+   return redirect('uprofile')    

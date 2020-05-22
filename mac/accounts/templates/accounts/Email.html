@@ -39,7 +39,7 @@ form:before {
                   <h1 class="display-4 py-2 text-truncate">Verify your Email</h1>
                   <div class="px-2">
                       <form action="/accounts/verify_email/" class="justify-content-center" method="post">{%csrf_token%} 
-                        <input type="number" class="form-control" name="code" placeholder="Enter the verification code" aria-describedby="emailHelp">
+                        <input type="number" class="form-control" name="code" placeholder="Enter the verification code" aria-describedby="emailHelp" required>
                         <input type="hidden" name="username" value="{{uname}}">
                         <input type="hidden" name="email" value="{{email}}">
                         <input type="hidden" name="phone" value="{{phone}}">

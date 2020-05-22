@@ -280,7 +280,7 @@ display:none;
                     <div class="modal-body">
                         <form action="/accounts/remove/{{mech.id}}" method="post">{%csrf_token%}
                             <input type="hidden" value="{{mech.mymechanic.username}}" name="mechanic{{mech.id}}">
-                            <input type="submit" class="btn btn-secondary " value="Remove" style="color:white;margin-left: 130px;">
+                            <input type="submit" class="btn btn-secondary " value="Remove" style="color:white;text-align:center;">
                             <button type="button" class="btn btn-secondary " data-dismiss="modal" style="color:white;margin-left: 30px;">Cancel</button>
                         </form>
                     </div>
@@ -333,6 +333,29 @@ display:none;
             </div>
         </div>
         {%endfor%}
+        {% if photos.has_other_pages %}
+  <nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    {% if photos.has_previous %}
+      <li class="page-item"><a href="?page={{ photos.previous_page_number }}" class="page-link">Previous</a></li>
+    {% else %}
+      <li class="disabled text-light" tabindex="-1" aria-disabled="true"><span></span></li>
+    {% endif %}
+    {% for i in photos.paginator.page_range %}
+      {% if photos.number == i %}
+        <li class="page-item active" aria-current="page"><a href="#" class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+      {% else %}
+        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if photos.has_next %}
+      <li class="page-item"><a  href="?page={{ photos.next_page_number }}" class="page-link">Next</a></li>
+    {% else %}
+      <li class="disabled text-light" tabindex="-1" aria-disabled="true"><span></span></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

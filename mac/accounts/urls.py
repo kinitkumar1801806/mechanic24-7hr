@@ -25,4 +25,9 @@ urlpatterns = [
     path('contacts/',views.contacts,name="contacts"),
     path('remove/<int:myid>',views.remove,name="remove"),
     path('comment/<int:myid>',views.comment,name="comment"),
+    path('changepassword/',views.changepassword,name="changepassword"),
+    path('change_password/',views.change_password,name="change_password"),
+    path('update_profile/',views.update_profile,name="update_profile"),
+    path('verify_phone/',views.verify_phone,name="verify_phone"),
+    path('upload_image/',views.upload_image,name="upload_image")
 ]

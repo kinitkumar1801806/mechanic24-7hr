@@ -250,7 +250,10 @@ text-decoration:none;
 {
 margin-left:600px;
 }
-
+a
+{
+  outline: none;
+}
 
  @media only screen and (max-width: 767px) {
    .display-3{
@@ -366,7 +369,7 @@ margin-left:600px;
           <li><i class="fas fa-user mt-3" ></i>
             <div class="profile_dd bg-dark">
                <div class="dd_item"><a href="/accounts/user_profile">Profile</a></div>
-               <div class="dd_item"><a href="#">Change Password</a></div>
+               <div class="dd_item"><a href="/accounts/changepassword/">Change Password</a></div>
                <div class="dd_item"><a href="/accounts/logout1/">Logout</a></div>
             </div>
           </li>
@@ -375,14 +378,24 @@ margin-left:600px;
   
  </div>
       </nav>
-   
+ <!--Alert Message-->
+    {% if messages %}
+    {%for message in messages%}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message!</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {%endfor%}
+    {%endif%}  
      
   <div class="main_container ">
       <div id="side" class="sidebar >
           <div class="sidebar__inner">
             <div class="profile">
               <div class="img">
-                <img src="{{image}}" style="width:40px;height:40px;border-radius:20px;" alt="profile_pic">
+                <img src="/media/{{image}}" style="width:40px;height:40px;border-radius:20px;" alt="profile_pic">
               </div>
               <div class="profile_info">
                  <p>Welcome</p>
@@ -406,12 +419,6 @@ margin-left:600px;
                 <a href="/accounts/contacts/" style="text-decoration: none;">
                   <span class="icon"><img src="/media/shop/images/contact.png" style="width:30px;height:30px;"></i></span>
                   <span class="title">Contacts</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" style="text-decoration: none;">
-                  <span class="icon"><img src="/media/shop/images/cart.png" style="width:30px;height:30px;"></i></span>
-                  <span class="title">Cart</span>
                 </a>
               </li>
               <li>

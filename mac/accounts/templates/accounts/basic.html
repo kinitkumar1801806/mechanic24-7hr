@@ -22,7 +22,9 @@
         align-items: center;
         position: relative;
       }
-      
+      a {
+       outline: none;
+       }
       #cover-caption {
         width: 100%;
         position: relative;
@@ -61,29 +63,29 @@
                 <li class="nav-item">
                     <a class="nav-link" href="blog/">Blog</a>
                 </li>
-                <li class="nav-item dropdown ">
+                <li class="nav-item dropdown " id="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Mechanic
+                        Signup
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                         <a href="#exampleModalCenter21" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter21" style="background-color: transparent;">
-                            Signup
+                            Mechanic
                         </a>
-                        <a href="#exampleModalCenter22" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter22" style="background-color: transparent;">
-                            Login
+                        <a href="#exampleModalCenter" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter" style="background-color: transparent;">
+                            User
                         </a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User
+                        Login
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                        <a href="#exampleModalCenter" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter" style="background-color: transparent;">
-                            Signup
+                        <a href="#exampleModalCenter22" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter22" style="background-color: transparent;">
+                            Mechanic
                         </a>
                         <a href="#exampleModalCenter1" class="dropdown-item text-light" data-toggle="modal" data-target="#exampleModalCenter1" style="background-color: transparent;">
-                            Login
+                            User
                         </a>
                     </div>
                 </li>
@@ -162,13 +164,13 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label" style="color:white;">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword" required>
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword1" class="col-sm-2 col-form-label" style="color:white;">Confirm Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password" id="inputPassword1" required>
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password" id="inputPassword1" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -202,7 +204,7 @@
                         <div class="form-group row">
                             <label for="inputPassword11" class="col-sm-2 col-form-label" style="color:white;">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword11" required>
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword11" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -271,13 +273,13 @@
                         <div class="form-group row">
                             <label for="inputPassword21" class="col-sm-2 col-form-label" style="color:white;">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword21" required>
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password1" placeholder="Enter your password" id="inputPassword21" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword121" class="col-sm-2 col-form-label" style="color:white;">Confirm Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password" id="inputPassword121" required>
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password2" placeholder="Re-type your password" id="inputPassword121" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -316,7 +318,7 @@
                         <div class="form-group row">
                             <label for="inputPassword22" class="col-sm-2 col-form-label" style="color:white;">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword22" required>
+                                <input type="password" class="form-control mx-2" autocomplete="new-password" name="password" placeholder="Enter your password" id="inputPassword22" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  required>
                             </div>
                         </div>
                         <div class="modal-footer">

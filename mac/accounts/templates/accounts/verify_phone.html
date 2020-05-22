@@ -1,0 +1,55 @@
+{%extends 'accounts/basic.html'%}
+{% block title%}Verify Phone{% endblock%}
+{%block css%}
+#cover {
+  background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+#dropdown
+{
+  display:none;
+}
+#cover-caption {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: -1;
+  border-radius: 10px;
+}
+{%endblock%}
+{%block body%}
+<section id="cover" class="min-vh-100">
+  <div id="cover-caption">
+      <div class="container">
+          <div class="row text-white">
+              <div class="col-xl-8 col-lg-10 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                  <h1 class="display-4 py-2 text-truncate">Verify your Phone number</h1>
+                  <div class="px-2">
+                      <form action="/accounts/verify_phone/" class="justify-content-center" method="post">{%csrf_token%} 
+                        <input type="number" class="form-control" name="code" placeholder="Enter the verification code" aria-describedby="emailHelp" required>
+                         <input type="hidden" name="phone" value="{{phone}}">
+                        <button type="submit" class="btn btn-primary btn-lg my-3">Verify</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+{%endblock%}

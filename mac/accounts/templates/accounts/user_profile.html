@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Profile</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
-<link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
-<!------ Include the above in your HEAD tag ---------->
-<style>
-body{
+    <title>Profile</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" />
+    <!------ Include the above in your HEAD tag ---------->
+    <style>
+        body{
     padding-top: 68px;
     padding-bottom: 50px;
-}
+    }
         .image-container {
             position: relative;
         }
 
+   #img-btn
+   {
+    margin-left:32px;
+    margin-bottom:30px;
+   }
+   #img-upload
+   {
+    display:none;
+   }
         .image {
             opacity: 1;
             display: block;
@@ -46,53 +56,70 @@ body{
         .image-container:hover .middle {
             opacity: 1;
         }
+        img:hover
+        {
+            cursor: pointer;
+        }
 </style>
 </head>
+
 <body>
-
-
-
-<div class="container">
+      <!--Alert Message-->
+    {% if messages %}
+    {%for message in messages%}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="margin-top:-67px;">
+        <strong>Message!</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {%endfor%}
+    {%endif%}
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
                     <div class="card-body">
                         <div class="card-title mb-4">
                             <div class="d-flex justify-content-start">
                                 <div class="image-container">
-                                    <img src="{{image}}" id="imgProfile" style="width: 150px; height: 150px;border-radius:128px;" class="img-thumbnail" />
-                                    <div class="middle">
-                                        <Button class="btn btn-secondary" id="btnChangePicture" value="Change" ><img src="/media/shop/images/camera.png" style="height:25px;width:25px;background:none;"></button>
-                                        <input type="file" style="display: none;" id="profilePicture" name="file" />
-                                    </div>
+                                    <img src="/media/{{image}}" id="imgProfile" style="width: 150px; height: 150px;border-radius:128px;" class="img-thumbnail" />
                                 </div>
+
                                 <div class="userData ml-3">
-                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{user.username}}</a></h2>
+                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{user.username}}</h2>
+                                    <h3><sub>
+                                         <a href="#exampleModalCenter" class="dropdown-item " data-toggle="modal" data-target="#exampleModalCenter" style="color:red;background-color:transparent;outline: none;">
+                            Edit Profile
+                        </a></sub></h3>
                                     <h6 class="d-block"><a href="javascript:void(0)"></a> </h6>
                                     <h6 class="d-block"><a href="javascript:void(0)"></a></h6>
                                 </div>
-                                <div class="ml-auto">
-                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
-                                </div>
                             </div>
                         </div>
-                        
-
+                        <div class="row">
+                            <button class="btn btn-primary" id="img-btn" onclick="formdisplay()">Upload Image</button>
+                        </div>
+                           <div class="row" id="img-upload">
+                            <form enctype="multipart/form-data" method="post" action="/accounts/upload_image/">{% csrf_token %}
+                              <label for="img" style="margin-left:20px;">Select image:</label>
+                              <input type="file" id="img" name="image" accept="image/*"><br/>
+                            <input type="submit"  class="btn btn-primary" value="Upload" style="margin-left:20px;margin-bottom:20px;">
+                             <button type="button"  class="btn btn-primary" style="margin-bottom:20px;" onclick="formhide()">Cancel</button>
+                            </form>
+                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true" onclick="show()">Basic Info</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices" role="tab" aria-controls="connectedServices" aria-selected="false">Vehicle Details</a>
+                                        <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices" role="tab" aria-controls="connectedServices" aria-selected="false" onclick="hide()">Vehicle Details</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content ml-1" id="myTabContent">
                                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-                                        
-
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">First Name</label>
@@ -102,7 +129,6 @@ body{
                                             </div>
                                         </div>
                                         <hr />
-
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Last Name</label>
@@ -112,14 +138,12 @@ body{
                                             </div>
                                         </div>
                                         <hr />
-                                        
-                                        
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Date of Birth</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                               {{dob}}
+                                                {{dob}}
                                             </div>
                                         </div>
                                         <hr />
@@ -128,7 +152,7 @@ body{
                                                 <label style="font-weight:bold;">Email</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                              {{user.email}}
+                                                {{user.email}}
                                             </div>
                                         </div>
                                         <hr />
@@ -143,6 +167,15 @@ body{
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Address</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{add}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Bio</label>
                                             </div>
                                             <div class="col-md-8 col-6">
@@ -150,23 +183,156 @@ body{
                                             </div>
                                         </div>
                                         <hr />
-
-
                                     </div>
                                     <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
-                                        Facebook, Google, Twitter Account that are connected to this account
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Vehicle</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{vehicle}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Model</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{model}}
+                                            </div>
+                                        </div>
+                                        <hr />
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
- 
-<body>
+    <script type="text/javascript">
+    function show() {
+        var el, ek;
+        el = document.getElementById('basicInfo');
+        ek = document.getElementById('connectedServices');
+        el.style.display = "block";
+        ek.style.display = "none";
+        el.className = "tab-pane fade show active";
+        ek.className = "tab-pane fade ";
+        document.getElementById('basicInfo-tab').className = "nav-link active";
+        document.getElementById('connectedServices-tab').className = "nav-link ";
+    }
+
+    function hide() {
+        var el, ek;
+        el = document.getElementById('basicInfo');
+        ek = document.getElementById('connectedServices');
+        el.style.display = "none";
+        ek.style.display = "block";
+        el.className = "tab-pane fade";
+        ek.className = "tab-pane fade show active";
+        document.getElementById('basicInfo-tab').className = "nav-link";
+        document.getElementById('connectedServices-tab').className = "nav-link active";
+    }
+    </script>
+ <!-- Modal User Signup -->
+    <div style="background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style=" background:none; ">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title bg-dark" id="exampleModalCenterTitle" style="color:white;">User Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/accounts/update_profile/" class="justify-content-center" method="post">{%csrf_token%}
+                        <h4>Basic Info</h4>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-sm-2 col-form-label" style="color:white;">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="firstname" name="firstname" placeholder="Enter your username" value="{{user.first_name}}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastname" class="col-sm-2 col-form-label" style="color:white;">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="lastname" name="lastname" placeholder="Enter your username" value="{{user.last_name}}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label" style="color:white;">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control mx-2" id="staticEmail" name="email" placeholder="email@example.com" value={{user.email}} required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticphone" class="col-sm-2 col-form-label" style="color:white;">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticphone" name="phone" placeholder="Enter your phone number" min="10" max="10" value={{phone}} required>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="dob" class="col-sm-2 col-form-label" style="color:white;">DOB</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="dob" name="dob" placeholder="Enter your date of birth" value="{{dob}}" required>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="staticaddress" class="col-sm-2 col-form-label" style="color:white;">Address</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticaddress" name="address" placeholder="Enter your address" value="{{add}}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticaddress1" class="col-sm-2 col-form-label" style="color:white;">Bio</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control mx-2" id="staticaddress1" name="bio" placeholder="Enter your bio" value="{{bio}}" required>
+                            </div>
+                        </div>
+                        
+                       
+                         <h4>Vehicle  Details</h4>
+                        <div class="form-group row">
+                            <label for="staticUser1" class="col-sm-2 col-form-label" style="color:white;">Vehicle</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticUser1" name="vehicle" placeholder="Enter your Vehicle details" value="{{vehicle}}" required>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="staticUser2" class="col-sm-2 col-form-label" style="color:white;">Model</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mx-2" id="staticUser2" name="model" placeholder="Enter your model number" value="{{model}}" required>
+                            </div>
+                        </div>
+                    </div>
+                         <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black;">Close</button>
+                            <input type="submit" class="btn btn-secondary" style="color:black;" value="Save Changes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function formdisplay()
+        {
+            var x=document.getElementById('img-upload');
+            x.style.display="block";
+        }
+         function formhide()
+        {
+            var x=document.getElementById('img-upload');
+            x.style.display="none";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <body>
+
 </html>

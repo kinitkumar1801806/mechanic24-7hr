@@ -59,8 +59,8 @@
 }
 
  .hamburger div.two{
-  top: 820px;
-  
+  top: 10px;
+  width: 30px;
 }
 
  .hamburger div.three{
@@ -120,6 +120,7 @@
 }
  .right_menu ul li .profile_dd .dd_item:hover{
   background:none;
+  border:none;
 }
 
  .right_menu ul li .profile_dd:before{
@@ -187,7 +188,10 @@
   margin-bottom: 1px;
   transition: all 0.3s ease;
 }
-
+a
+{
+  outline: none;
+}
 .main_container .sidebar ul li a .icon{
   margin-right: 15px;
   font-size: 28px;
@@ -251,8 +255,7 @@ margin-left:600px;
 }
 
 
-
- @media only screen and (max-width: 800px) {
+ @media only screen and (max-width: 767px) {
    .display-3{
         font-size:24px;
     }
@@ -323,7 +326,7 @@ margin-left:600px;
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
-<body style=" background: #222 url('https://unsplash.it/1920/1080/?random')  no-repeat;background-size: cover;">
+<body style=" background: #222 url('https://unsplash.it/1920/1080/?random') no-repeat;background-size: cover;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="hamburger bg-dark">
        <div class="hamburger__inner">
@@ -366,7 +369,7 @@ margin-left:600px;
           <li><i class="fas fa-user mt-3" ></i>
             <div class="profile_dd bg-dark">
                <div class="dd_item"><a href="/accounts/user_profile">Profile</a></div>
-               <div class="dd_item"><a href="#">Change Password</a></div>
+               <div class="dd_item"><a href="/accounts/changepassword/">Change Password</a></div>
                <div class="dd_item"><a href="/accounts/logout1/">Logout</a></div>
             </div>
           </li>
@@ -382,7 +385,7 @@ margin-left:600px;
           <div class="sidebar__inner">
             <div class="profile">
               <div class="img">
-                <img src="{{image}}" style="width:40px;height:40px;border-radius:20px;" alt="profile_pic">
+                <img src="/media/{{image}}" style="width:40px;height:40px;border-radius:20px;" alt="profile_pic">
               </div>
               <div class="profile_info">
                  <p>Welcome</p>
@@ -391,21 +394,21 @@ margin-left:600px;
             </div>
             <ul>
               <li>
-                <a href="#" class="active" style="text-decoration: none;">
+                <a href="/accounts/welcome_user/" class="active" style="text-decoration: none;">
                   <span class="icon"><i class="fas fa-dice-d6"></i></span>
                   <span class="title">Dashboard</span>
                 </a>
               </li>
               <li>
-                <a href="#" style="text-decoration: none;" >
+                <a href="/accounts/mechanics/" style="text-decoration: none;" >
                   <span class="icon"><img src="/media/shop/images/mechanic.png" style="width:30px;height:30px;"></i></span>
                   <span class="title">Mechanics</span>
                 </a>
               </li>
               <li>
-                <a href="#" style="text-decoration: none;">
-                  <span class="icon"><img src="/media/shop/images/payment.png" style="width:30px;height:30px;"></i></span>
-                  <span class="title">Payments</span>
+                <a href="/accounts/contacts/" style="text-decoration: none;">
+                  <span class="icon"><img src="/media/shop/images/contact.png" style="width:30px;height:30px;"></i></span>
+                  <span class="title">Contacts</span>
                 </a>
               </li>
               <li>
@@ -415,7 +418,7 @@ margin-left:600px;
                 </a>
               </li>
               <li>
-                <a href="#" style="text-decoration: none;">
+                <a href="/accounts/track/" style="text-decoration: none;">
                   <span class="icon"><img src="/media/shop/images/map.jpg" style="width:30px;height:30px;background:transparent;"></i></span>
                   <span class="title">Tracker</span>
                 </a>
@@ -449,16 +452,23 @@ margin-left:600px;
       <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
     </div>
   </div>
-
-  <hr>
-
-
-
 </div>
   </div>
 </div>
+<div id="overlay">
+     <img src="Preloader_3.gif" alt="Loading" />
+    
+</div>
 <script type="text/javascript">
-  localStorage.setItem('known_mechanic','uid');
+  localStorage.setItem('known_mechanic','mid');
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+  $(window).load(function(){
+   // PAGE IS FULLY LOADED  
+   // FADE OUT YOUR OVERLAYING DIV
+   $('#overlay').fadeOut();
+});
 </script>
 </body>
 </html>
